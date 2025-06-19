@@ -40,7 +40,7 @@ class TodosController < ApplicationController
       format.html { render :new }
     end
   end
-end
+  end
 
 
   # PATCH/PUT /todos/1 or /todos/1.json
