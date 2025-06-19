@@ -88,13 +88,13 @@ jobs:
       - name: Create test database
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgresql://quest02_user:rtjqhthMJN1qKzPd7Q6Uairs3wScr5Tw@dpg-d19eetnfte5s73cbu5mg-a.singapore-postgres.render.com/quest02
+          DATABASE_URL: postgresql://naphasquest_user:N9PeAiywUG3SMft6GRJcsle3hb52hZZS@dpg-d19p1l2dbo4c73bmni9g-a.singapore-postgres.render.com/naphasquest
         run: bin/rails db:create
 
       - name: Run RSpec tests
         env:
           RAILS_ENV: test
-          DATABASE_URL: postgresql://quest02_user:rtjqhthMJN1qKzPd7Q6Uairs3wScr5Tw@dpg-d19eetnfte5s73cbu5mg-a.singapore-postgres.render.com/quest02
+          DATABASE_URL: postgresql://naphasquest_user:N9PeAiywUG3SMft6GRJcsle3hb52hZZS@dpg-d19p1l2dbo4c73bmni9g-a.singapore-postgres.render.com/naphasquest
         run: bundle exec rspec 
 
       - name: Keep screenshots from failed system tests
