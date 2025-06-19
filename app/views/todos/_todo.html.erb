@@ -13,5 +13,9 @@
     </span>
   </div>
 
-  <%= button_to 'Delete', todo_path(todo), method: :delete, class: "bg-red-100 hover:bg-red-200 text-red-600 px-4 py-2 rounded-xl font-medium transition" %>
+  <%= button_to 'Delete', todo_path(todo),
+              method: :delete,
+              data: { turbo_stream: true },
+              form: { class: "inline" },
+              class: "bg-red-100 hover:bg-red-200 text-red-600 px-4 py-2 rounded-xl font-medium transition" %>
 </li>
