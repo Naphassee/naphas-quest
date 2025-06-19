@@ -1,18 +1,21 @@
-<%= form_with model: todo, local: false do |form| %>
-  <% if todo.errors.any? %>
-    <div style="color: red">
-      <ul>
-        <% todo.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= turbo_frame_tag "new_todo" do %>
+  <%= form_with model: todo, local: false do |form| %>
+    <% if todo.errors.any? %>
+      <div class="bg-red-100 text-red-700 rounded-lg px-4 py-2 mb-3 text-sm shadow-sm">
+        <ul class="list-disc list-inside">
+          <% todo.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="flex gap-4">
+      <div class="flex flex-col w-full">
+        <%= form.label :title, "Title", class: "sr-only" %>
+        <%= form.text_field :title, placeholder: "CREATE NEW QUEST", class: "border-none bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg px-4 py-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400 " %>
+      </div>
+      <%= form.submit "+ add", class: "bg-green-100 hover:bg-green-200 text-green-600 px-6 py-2 rounded-xl font-medium transition-colors flex items-center gap-2 shadow-sm" %>
     </div>
   <% end %>
-  <div class="flex gap-4">
-    <div class="flex flex-col w-full">
-      <%= form.label :title, "Title", class: "sr-only" %>
-      <%= form.text_field :title, placeholder: "CREATE NEW QUEST", class: "border-none bg-gradient-to-br from-blue-50 to-purple-50 rounded-lg px-4 py-2 w-full text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400" %>
-    </div>
-    <%= form.submit "+ add", class: "bg-green-100 hover:bg-green-200 text-green-600 px-6 rounded-xl font-medium transition-colors flex items-center gap-2" %>
-  </div>
 <% end %>
