@@ -59,14 +59,16 @@ class TodosController < ApplicationController
 
   # DELETE /todos/1 or /todos/1.json
   def destroy
-    @todo = Todo.find(params[:id]) # ถ้ายังไม่มีอยู่
-    @todo.destroy!
-
-    respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@todo) }
-      format.html { redirect_to todos_path, status: :see_other, notice: "Todo was successfully destroyed." }
-      format.json { head :no_content }
+  @todo.destroy!
+  respond_to do |format|
+    format.turbo_stream do
+      streams = [turbo_stream.remove(@todo)]
+      streams << turbo_stream.append("todos", partial: "todos/no_quests") if Todo.count.zero?
+      render turbo_stream: streams
     end
+    format.html { redirect_to todos_path, status: :see_other, notice: "Todo was successfully destroyed." }
+    format.json { head :no_content }
+  end
   end
 
   def toggle_done
